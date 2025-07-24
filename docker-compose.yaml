@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    depends_on:
+      - auth-user-profile
+      - vocabulary
+      - learning-engine
+    restart: unless-stopped
+
+  auth-user-profile:
+    build: ./auth-user-profile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+    restart: unless-stopped
+
+  vocabulary:
+    build: ./vocabulary
+    ports:
+      - "8082:8082"
+    environment:
+      - PORT=8082
+    restart: unless-stopped
+
+  learning-engine:
+    build: ./learning-engine
+    ports:
+      - "8083:8083"
+    environment:
+      - PORT=8083
+    restart: unless-stopped
+
+  scheduler-notification:
+    build: ./scheduler-notification
+    ports:
+      - "8084:8084"
+    environment:
+      - PORT=8084
+    restart: unless-stopped
