@@ -1,0 +1,9 @@
+go 1.24.4
+
+use (
+	./api-gateway
+	./auth-user-profile
+	./learning-engine
+	./scheduler-notification
+	./vocabulary
+)
