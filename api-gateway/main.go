@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -19,8 +19,11 @@ func main() {
 
 	srv := gin.Default()
 	srv.GET("/ping", func(c *gin.Context) {
-		c.String(200, fmt.Sprintf("%s is alive", serviceName))
+		c.String(http.StatusOK, serviceName+" is alive")
 	})
 
-	srv.Run(fmt.Sprintf(":%s", port))
+	err := srv.Run(":" + port)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
